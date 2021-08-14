@@ -1,5 +1,0 @@
-abba
-%
-s -s
-%
-abba
