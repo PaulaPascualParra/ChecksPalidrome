@@ -1,10 +1,19 @@
+def read_file_in_chunks(file, size=1024):
+    while True:
+        data = file.read(size)
+        if not data:
+            break
+        yield data
+
+
 def read_file(file):
     try:
+        data = ""
         with open(file) as my_file:
-            data = my_file.read()
+            for chunk in read_file_in_chunks(my_file):
+                data += chunk
             my_file.close()
             return data
-
     except UnicodeDecodeError:
         print("Not an utf-8 file, can't read it. Sorry :(")
         raise
